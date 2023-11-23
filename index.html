@@ -33,7 +33,6 @@
     <script>
         let currentPage = 1;
         const totalPages = 39; 
-
         function showPage(pageNumber) {
             document.getElementById('book-image').src = `images/page${pageNumber}.png`;
         }
@@ -43,6 +42,27 @@
                 currentPage = currentPage < totalPages ? currentPage + 1 : 1;
                 showPage(currentPage);
             } else if (event.key === 'ArrowLeft') {
+                currentPage = currentPage > 1 ? currentPage - 1 : totalPages;
+                showPage(currentPage);
+            }
+        });
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', function (event) {
+            touchStartX = event.touches[0].clientX;
+        });
+
+        document.addEventListener('touchend', function (event) {
+            touchEndX = event.changedTouches[0].clientX;
+
+            if (touchStartX - touchEndX > 50) {
+                // Swipe left
+                currentPage = currentPage < totalPages ? currentPage + 1 : 1;
+                showPage(currentPage);
+            } else if (touchEndX - touchStartX > 50) {
+                // Swipe right
                 currentPage = currentPage > 1 ? currentPage - 1 : totalPages;
                 showPage(currentPage);
             }
