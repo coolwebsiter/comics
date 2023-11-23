@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culture of Kazakhstan is unique</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+
+        #book-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+
+        #book-image {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Culture of Kazakhstan is unique</h1>
+    <div id="book-container">
+        <img id="book-image" src="images/page1.png" alt="Page 1">
+    </div>
+
+    <script>
+        let currentPage = 1;
+        const totalPages = 39; 
+
+        function showPage(pageNumber) {
+            document.getElementById('book-image').src = `images/page${pageNumber}.png`;
+        }
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'ArrowRight') {
+                currentPage = currentPage < totalPages ? currentPage + 1 : 1;
+                showPage(currentPage);
+            } else if (event.key === 'ArrowLeft') {
+                currentPage = currentPage > 1 ? currentPage - 1 : totalPages;
+                showPage(currentPage);
+            }
+        });
+    </script>
+</body>
+</html>
